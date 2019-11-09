@@ -21,5 +21,9 @@ scala_binary(
         "//3rdparty/jvm/com/typesafe/akka:akka_stream",
         "//3rdparty/jvm/de/heikoseeberger:akka_http_circe",
     ],
-    main_class = "main.Main"
+    main_class = "main.Main",
+    scalacopts=[
+        "-Xfatal-warnings",
+        "-Ywarn-unused:imports",
+    ]
 )

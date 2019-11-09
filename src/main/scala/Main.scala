@@ -2,25 +2,18 @@ package main
 
 import sangria.execution._
 import sangria.marshalling.circe._
-import sangria.marshalling.InputUnmarshaller
-import sangria.macros._
-import sangria.schema._
 import sangria.validation._
 import sangria.parser.{QueryParser, SyntaxError}
 
-import scala.util.control.NonFatal
-
-import scala.util.{Try, Success, Failure}
+import scala.util.{Success, Failure}
 
 import io.circe.Json
-import io.circe._, io.circe.generic.auto._, io.circe.parser._, io.circe.syntax._
+import io.circe._, io.circe.generic.auto._, io.circe.syntax._
 import de.heikoseeberger.akkahttpcirce.ErrorAccumulatingCirceSupport._
 
-import scala.concurrent.duration._
-import scala.concurrent.{Future, Await}
-import scala.concurrent.ExecutionContext.Implicits.global
+import scala.concurrent.Future
 
-import graphql.{TripSchema, Queries, Ctx}
+import graphql.{TripSchema, Ctx}
 import services.{Triposo, WorldWeatherOnline, InMemoryCaching}
 import config.Config
 
@@ -31,8 +24,6 @@ import akka.actor.ActorSystem
 import akka.http.scaladsl.Http
 import akka.http.scaladsl.model.StatusCodes._
 import akka.http.scaladsl.server.Directives._
-import akka.http.scaladsl.model.MediaTypes._
-import akka.http.scaladsl.server._
 import akka.stream.ActorMaterializer
 
 object Main extends App {
