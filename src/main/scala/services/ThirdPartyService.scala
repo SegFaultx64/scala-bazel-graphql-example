@@ -1,7 +1,7 @@
 package services
 
 import sttp.client._
-import io.circe._, io.circe.generic.auto._, io.circe.parser._, io.circe.syntax._
+import io.circe._, io.circe.parser._
 
 trait ThirdPartyService {
   this: CachingBehavior =>
@@ -17,7 +17,7 @@ trait ThirdPartyService {
     val response = request.send()
 
     response.body match {
-      case Left(error) => None
+      case Left(_) => None
       case Right(body) => decode[T](body) match {
         case Left(_) => None
         case Right(body) => Some(body)

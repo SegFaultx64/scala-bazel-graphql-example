@@ -3,7 +3,7 @@ package config
 import cats.syntax.either._
 import scala.io.Source
 import io.circe.yaml.parser
-import io.circe._, io.circe.generic.auto._, io.circe.syntax._
+import io.circe._, io.circe.generic.auto._
 
 case class Config(triposo: TriposoConfig, wwo: WWOConfig)
 object Config {

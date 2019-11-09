@@ -1,7 +1,7 @@
 package services
 
 import sttp.client._
-import io.circe._, io.circe.generic.auto._, io.circe.parser._, io.circe.syntax._
+import io.circe.generic.auto._
 
 class WorldWeatherOnline(key: String) extends ThirdPartyService {
   this: CachingBehavior =>

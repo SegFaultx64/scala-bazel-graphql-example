@@ -1,6 +1,5 @@
 package graphql
 
-import sangria.macros._
 import sangria.macros.derive._
 import sangria.schema._
 
