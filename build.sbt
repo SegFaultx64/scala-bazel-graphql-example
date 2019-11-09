@@ -23,7 +23,7 @@ version := "1.0"
 
 // Want to use a published library in your project?
 // You can define other libraries as dependencies in your build like this:
-// libraryDependencies += "org.typelevel" %% "cats-core" % "2.0.0"
+libraryDependencies += "org.typelevel" %% "cats-core" % "2.0.0"
 libraryDependencies += "com.softwaremill.sttp.client" %% "core" % "2.0.0-M9"
 libraryDependencies += "io.circe" % "circe-core_2.12" % "0.12.3"
 libraryDependencies += "io.circe" % "circe-generic_2.12" % "0.12.3"
@@ -31,7 +31,6 @@ libraryDependencies += "io.circe" % "circe-parser_2.12" % "0.12.3"
 libraryDependencies += "org.sangria-graphql" % "sangria_2.12" % "2.0.0-M1"
 libraryDependencies += "org.sangria-graphql" % "sangria-circe_2.12" % "1.3.0"
 libraryDependencies += "io.circe" %% "circe-yaml" % "0.10.0"
-
 
 // Here, `libraryDependencies` is a set of dependencies, and by using `+=`,
 // we're adding the cats dependency to the set of dependencies that sbt will go

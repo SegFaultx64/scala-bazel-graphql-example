@@ -6,6 +6,8 @@ scala_binary(
     deps = [
         "//src/main/scala/services",
         "//src/main/scala/models",
+        "//src/main/scala/graphql",
+        "//src/main/scala/config",
         "//3rdparty/jvm/com/softwaremill/sttp/client:core",
         "//3rdparty/jvm/io/circe:circe_core",
         "//3rdparty/jvm/io/circe:circe_yaml",
@@ -16,5 +18,5 @@ scala_binary(
         "//3rdparty/jvm/org/sangria_graphql:sangria",
         "//3rdparty/jvm/org/sangria_graphql:sangria_circe",
     ],
-    main_class = "Main"
+    main_class = "main.Main"
 )

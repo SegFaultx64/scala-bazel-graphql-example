@@ -12,3 +12,4 @@ bazel-bazel-example
 /.metals
 /project
 /target
+/.vscode
