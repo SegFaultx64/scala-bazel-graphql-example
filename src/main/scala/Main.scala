@@ -5,7 +5,10 @@ import sangria.marshalling.circe._
 import sangria.marshalling.InputUnmarshaller
 import sangria.macros._
 import sangria.schema._
-import sangria.parser.QueryParser
+import sangria.validation._
+import sangria.parser.{QueryParser, SyntaxError}
+
+import scala.util.control.NonFatal
 
 import scala.util.{Try, Success, Failure}
 
@@ -61,8 +64,9 @@ object Main extends App {
           }
         }
 
-        onComplete(temp) { done =>
-          complete(done)
+        onComplete(temp) {
+          case Success(done) => complete(done)
+          case Failure(error) => complete(BadRequest, formatError(error))
         }
       }
     }
@@ -74,6 +78,31 @@ object Main extends App {
   bindingFuture
     .flatMap(_.unbind()) // trigger unbinding from the port
     .onComplete(_ => system.terminate()) // and shutdown when done
+
+  def formatError(error: Throwable): Json = error match {
+    case syntaxError: SyntaxError ⇒
+      Json.obj("errors" → Json.arr(
+      Json.obj(
+        "message" → Json.fromString(syntaxError.getMessage),
+        "locations" → Json.arr(Json.obj(
+          "line" → Json.fromBigInt(syntaxError.originalError.position.line),
+          "column" → Json.fromBigInt(syntaxError.originalError.position.column))))))
+    case validationError: ValidationError ⇒
+      Json.obj("errors" → Json.arr(
+      Json.obj(
+        "message" → Json.fromString(validationError.getMessage),
+        "locations" → validationError.violations.map(v => {
+          v match {
+            case a: AstNodeViolation => a.locations.map(l => {
+              l.asJson
+            })
+          }
+        }).asJson
+      )))
+    case e ⇒
+      println(e)
+      throw e
+  }
 }
 
 case class Query(query: String, operationName: Option[String], variables: Option[Json])
