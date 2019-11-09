@@ -32,6 +32,9 @@ libraryDependencies += "org.sangria-graphql" % "sangria_2.12" % "2.0.0-M1"
 libraryDependencies += "org.sangria-graphql" % "sangria-circe_2.12" % "1.3.0"
 libraryDependencies += "io.circe" %% "circe-yaml" % "0.10.0"
 
+libraryDependencies += "com.typesafe.akka" %% "akka-http" % "10.1.10"
+libraryDependencies += "de.heikoseeberger" %% "akka-http-circe" % "1.29.1"
+
 // Here, `libraryDependencies` is a set of dependencies, and by using `+=`,
 // we're adding the cats dependency to the set of dependencies that sbt will go
 // and fetch when it starts up.

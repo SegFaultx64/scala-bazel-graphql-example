@@ -17,6 +17,9 @@ scala_binary(
         "//3rdparty/jvm/org/typelevel:cats_core",
         "//3rdparty/jvm/org/sangria_graphql:sangria",
         "//3rdparty/jvm/org/sangria_graphql:sangria_circe",
+        "//3rdparty/jvm/com/typesafe/akka:akka_http",
+        "//3rdparty/jvm/com/typesafe/akka:akka_stream",
+        "//3rdparty/jvm/de/heikoseeberger:akka_http_circe",
     ],
     main_class = "main.Main"
 )

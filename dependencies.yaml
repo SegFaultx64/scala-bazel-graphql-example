@@ -45,7 +45,17 @@ dependencies:
     shapeless:
       version: "2.3.3"
       lang: "scala"
-    
+  com.typesafe.akka:
+    akka-http:
+      version: "10.1.10"
+      lang: "scala"
+    akka-stream:
+      version: "2.5.23"
+      lang: "scala"
+  de.heikoseeberger:
+    akka-http-circe:
+      version: "1.29.1"
+      lang: scala
 
 
 replacements:

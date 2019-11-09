@@ -4,6 +4,7 @@ import services.{WorldWeatherOnline, WWOClimateAverages, TriposoLocation, Tripos
 
 case class Location(
     name: String,
+    locationType: String,
     coordinates: LatLong,
     description: String,
     images: List[Image],
@@ -23,6 +24,7 @@ object Location {
   implicit def fromTriposo(t: TriposoLocation): Location = {
     new Location(
       t.name,
+      t.`type`,
       t.coordinates,
       t.snippet,
       t.images.map((a: TriposoImage) => a: Image),
