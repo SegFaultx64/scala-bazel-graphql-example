@@ -5,7 +5,7 @@ bazel-genfiles
 bazel-out
 bazel-testlogs
 bazel-vagrant
-bazel-bazel-example
+bazel-trip-app
 
 /config.yaml
 /.bloop
