@@ -22,4 +22,5 @@ scala_binary(
         "//3rdparty/jvm/de/heikoseeberger:akka_http_circe",
     ],
     main_class = "main.Main",
+    visibility = ["//visibility:public"],
 )

@@ -14,19 +14,21 @@ class Triposo(accountId: String, token: String) extends ThirdPartyService {
       .header("X-Triposo-Token", token)
   }
 
-  val locationsForCountry = cachable((countrycode: String) => {
-    type Response = TriposoResponse[TriposoLocation]
-    fetch[Response](
+  type ==>[K, V] = Cachable[K, V]
+  type LocationResponse = TriposoResponse[TriposoLocation]
+  type LocationRequest = String ==> Option[LocationResponse]
+
+  val locationsForCountry: LocationRequest = (countrycode: String) => {
+    fetch[LocationResponse](
       uri"https://www.triposo.com/api/20190906/location.json?countrycode=$countrycode&count=15"
     )
-  })
+  }
 
-  val locationsFromID = cachable((id: String) => {
-    type Response = TriposoResponse[TriposoLocation]
-    fetch[Response](
+  val locationsFromID: LocationRequest = (id: String) => {
+    fetch[LocationResponse](
       uri"https://www.triposo.com/api/20190906/location.json?id=$id"
     )
-  })
+  }
 }
 
 case class TriposoLocation(

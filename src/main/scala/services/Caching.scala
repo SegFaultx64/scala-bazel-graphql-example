@@ -2,6 +2,7 @@ package services
 
 trait CachingBehavior {
   class Cachable[K, V](get: (K) => V) {
+    var temp: List[K] = Nil
     def makeCachable(): (K) => V = {
       get
     }
@@ -9,11 +10,13 @@ trait CachingBehavior {
     def apply(k: K): V = {
       get(k)
     }
+
+    def evict(k: K) {
+      temp = k :: temp
+    }
   }
 
-  type ==>[K, V] = Cachable[K, V]
-
-  def cachable[K, V](get: (K) => V): K ==> V = {
+  implicit def cachable[K, V](get: (K) => V): Cachable[K, V] = {
     new Cachable[K, V](get)
   }
 }
@@ -46,9 +49,13 @@ trait InMemoryCaching extends CachingBehavior {
       withCaching(k)
     }
 
+    override def evict(k: K) {
+      cache = cache - k
+    }
+
   }
 
-  override def cachable[K, V](get: (K) => V): Cachable[K, V] = {
+  implicit override def cachable[K, V](get: (K) => V): Cachable[K, V] = {
     new Cachable[K, V](get)
   }
 }

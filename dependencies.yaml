@@ -6,6 +6,10 @@ options:
   - load("@io_bazel_rules_scala//scala:scala.bzl", "scala_library", "scala_binary", "scala_test")
 
 dependencies:
+  org.scalatest:
+    scalatest:
+      version: "3.0.8"
+      lang: scala
   org.typelevel:
     cats:
       version: "2.0.0"
